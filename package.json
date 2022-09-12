@@ -2,11 +2,11 @@
   "name": "cors",
   "version": "1.0.0",
   "description": "demo example about CORS",
-  "main": "src/server.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.js",
-    "live": "nodemon src/server.js"
+    "start": "node server.js",
+    "live": "nodemon server.js"
   },
   "keywords": [
     "cors"
