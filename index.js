@@ -5,12 +5,16 @@ const bodyParser = require('body-parser')
 
 app.use(express.static('public'));
 app.use(bodyParser.json()) // for parsing application/json
-
 const corsOptions = {
   origin: 'https://producthackers.com',
+  // origin: ['https://producthackers.com', 'https://www.havaianas-store.com', /\.example2\.com$/] => We can filter for some origins, also we use regex
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   methods: ['GET', 'POST']
-}
+};
+
+// app.use(cors()) => Other way to declare All CORS Origins
+
+// app.use(cors(corsOptions)) => Other way to declare CORS for a single Origin
 
 // No CORS
 app.get('/no-cors', (req, res) => {
