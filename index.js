@@ -5,7 +5,7 @@ const cors = require('cors');
 
 app.use(express.static('public'));
 
-var corsOptions = {
+const corsOptions = {
   origin: 'https://producthackers.com',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
@@ -23,6 +23,12 @@ app.get('/all-cors', cors(), (req, res) => {
 // CORS enabled for PH Website
 app.get('/ph-cors', cors(corsOptions), (req, res) => {
   res.json({msg: 'This is CORS-enabled for PH Origins!'})
+});
+
+app.options('/ph-cors-post', cors()) // enable pre-flight request for POST
+
+app.post('/ph-cors-post', cors(corsOptions), (req, res) => {
+  res.json({msg: 'This is CORS-enabled for PH Origins with POST method!', body: req.body})
 });
 
 app.listen(process.env.PORT || 3000);
