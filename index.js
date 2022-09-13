@@ -28,7 +28,7 @@ app.get('/ph-cors', cors(corsOptions), (req, res) => {
 app.options('/ph-cors-post', cors()) // enable pre-flight request for POST
 
 app.post('/ph-cors-post', cors(corsOptions), (req, res) => {
-  res.json({msg: 'This is CORS-enabled for PH Origins with POST method!', body: req.body})
+  res.json(req.body);
 });
 
 app.listen(process.env.PORT || 3000);
