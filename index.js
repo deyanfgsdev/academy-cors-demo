@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 const cors = require('cors');
+const bodyParser = require('body-parser')
 
 app.use(express.static('public'));
+app.use(bodyParser.json()) // for parsing application/json
 
 const corsOptions = {
   origin: 'https://producthackers.com',
@@ -27,8 +28,8 @@ app.get('/ph-cors', cors(corsOptions), (req, res) => {
 
 app.options('/ph-cors-post', cors()) // enable pre-flight request for POST
 
-app.post('/ph-cors-post', cors(corsOptions), (req, res) => {
-  res.json(req.body);
+app.post('/ph-cors-post',cors(corsOptions),  (req, res) => {
+  res.json({msg: 'This is CORS-enabled for PH Origins with POST method!', body: req.body})
 });
 
 app.listen(process.env.PORT || 3000);
